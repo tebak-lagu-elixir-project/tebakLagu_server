@@ -14,7 +14,8 @@ class SongController {
     }
 
     static async getByKeyword(req, res){
-        axios.get(`${SongController.API_DEEZER}/search?limit=100&q=${req.params.keyword}`)
+        let { keyword } = req.params
+        axios.get(`${SongController.API_DEEZER}/search?limit=100&q=${keyword}`)
           .then(({ data }) => {
               let songs  = data.data.map(song => {
                   let formatSong = {
