@@ -12,6 +12,8 @@ app.use(cors())
 app.use(express.urlencoded ({ extended: false }))
 app.use(express.json())
 
+app.get('/', (req, res) => {res.json({ msg: "Deployment successful"})})
+
 io.on('connection', function(socket) {
   console.log('User connected')
 
