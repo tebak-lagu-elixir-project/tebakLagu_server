@@ -6,10 +6,13 @@ const PORT = process.env.PORT || 3000 // Kita sebaiknya buat process.env. supaya
 
 const server = http.createServer(app)
 const io = require('socket.io')(server)
+const router = require('./routes')
 
 app.use(cors())
 app.use(express.urlencoded ({ extended: false }))
 app.use(express.json())
+app.use(router)
+
 
 // io.on('connection'. function(socket) {
 //   console.log('User connected')
