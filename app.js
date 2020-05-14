@@ -39,12 +39,13 @@ io.on('connection', function(socket) {
   socket.on('getRooms', () => {
     Room.findAll()
       .then(rooms => {
-        socket.emit('showRooms', rooms)
+        io.emit('showRooms', rooms)
       })
       .catch(err => console.log(err))          
   })
 
-  // add a player
+
+  // add a player when joining
   // payload = { roomId, newPlayer = <string> }
   socket.on('addPlayer', (payload) => {
     const { roomId, newPlayer } = payload
