@@ -28,9 +28,9 @@ io.on('connection', function(socket) {
       name, songs, players
     })
     .then(room => {
-      socket.join(room.id, (err) => {
-        if (err) console.log(err);
-        else {
+      // socket.join(room.id, (err) => {
+      //   if (err) console.log(err);
+      //   else {
           console.log('Room created');
           io.emit('createdRoom', room)
           Room.findAll()
@@ -38,8 +38,8 @@ io.on('connection', function(socket) {
               io.emit('showRooms', rooms)
             })
             .catch(err => console.log(err))
-        }
-      })
+      //   }
+      // })
     })
     .catch(err => console.log(err))          
   })
