@@ -1,9 +1,9 @@
 {
   "development": {
-    "username": "postgres",
-    "password": "postgres",
-    "database": "tb_development",
-    "host": "localhost",
+    "username": "yohan",
+    "password": "12345678",
+    "database": "tebakLagu_server",
+    "host": "127.0.0.1",
     "dialect": "postgres"
   },
   "test": {
