@@ -41,30 +41,51 @@ class SongController {
         switch (req.params.category){
             case 'chart':
                     keyword = 'chart/0/tracks'
+                    axios.get(`${SongController.API_DEEZER}/${keyword}`)
+                        .then(({ data }) => {
+                            let songs  = data.data.map(song => {
+                                let formatSong = {
+                                    id: song.id,
+                                    preview: song.preview
+                                }
+                                return formatSong
+                            })
+                            songs = SongController.randomSong(songs)
+                            res.status(200).json({
+                                songs
+                            })
+                        })
+                        .catch(err => {
+                            console.log(err)
+                            res.status(500).json({
+                                message : 'Internal Server Error'
+                            })
+                        })
                 break
             default:
+                    keyword = `playlist/${req.params.category}`
+                    axios.get(`${SongController.API_DEEZER}/${keyword}`)
+                        .then(({ data }) => {
+                            let songs  = data.tracks.data.map(song => {
+                                let formatSong = {
+                                    id: song.id,
+                                    preview: song.preview
+                                }
+                                return formatSong
+                            })
+                            songs = SongController.randomSong(songs)
+                            res.status(200).json({
+                                songs
+                            })
+                        })
+                        .catch(err => {
+                            console.log(err)
+                            res.status(500).json({
+                                message : 'Internal Server Error'
+                            })
+                        })
                 break
         }
-        axios.get(`${SongController.API_DEEZER}/${keyword}`)
-            .then(({ data }) => {
-                let songs  = data.data.map(song => {
-                    let formatSong = {
-                        id: song.id,
-                        preview: song.preview
-                    }
-                    return formatSong
-                })
-                songs = SongController.randomSong(songs)
-                res.status(200).json({
-                    songs
-                })
-            })
-            .catch(err => {
-                console.log(err)
-                res.status(500).json({
-                    message : 'Internal Server Error'
-                })
-            })
     }
 }
 
