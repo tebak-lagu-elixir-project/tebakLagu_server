@@ -4,6 +4,7 @@ const cors = require('cors')
 const http = require('http') // bawaan node.js
 const PORT = process.env.PORT || 3000 // Kita sebaiknya buat process.env. supaya bisa deploy nanti
 const { Room } = require('./models')
+const router = require('./routes/index.js')
 
 const server = http.createServer(app)
 const io = require('socket.io')(server)
@@ -12,7 +13,8 @@ app.use(cors())
 app.use(express.urlencoded ({ extended: false }))
 app.use(express.json())
 
-app.get('/', (req, res) => {res.json({ msg: "Deployment successful"})})
+app.get('/', (req, res) => {res.json({ msg: "Deployment successfulgit"})})
+app.use(router)
 
 io.on('connection', function(socket) {
   console.log('User connected')
@@ -31,6 +33,11 @@ io.on('connection', function(socket) {
         else {
           console.log('Room created');
           io.emit('createdRoom', room)
+          Room.findAll()
+            .then(rooms => {
+              io.emit('showRooms', rooms)
+            })
+            .catch(err => console.log(err))
         }
       })
     })
