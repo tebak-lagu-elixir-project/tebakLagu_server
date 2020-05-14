@@ -2,24 +2,19 @@
   "development": {
     "username": "postgres",
     "password": "postgres",
-    "database": "tebakLagu_server",
-    "host": "127.0.0.1",
+    "database": "tb_development",
+    "host": "localhost",
     "dialect": "postgres"
   },
   "test": {
-    "username": "root",
-    "password": null,
-    "database": "database_test",
-    "host": "127.0.0.1",
-    "dialect": "mysql",
-    "operatorsAliases": false
+    "username": "postgres",
+    "password": "postgres",
+    "database": "tb_test",
+    "host": "localhost",
+    "dialect": "postgres"
   },
   "production": {
-    "username": "root",
-    "password": null,
-    "database": "database_production",
-    "host": "127.0.0.1",
-    "dialect": "mysql",
-    "operatorsAliases": false
+    "use_env_variable" : "DATABASE_URL",
+    "dialect" : "postgres"
   }
 }
