@@ -8,12 +8,10 @@ const router = require('./routes/index.js')
 
 const server = http.createServer(app)
 const io = require('socket.io')(server)
-const router = require('./routes')
 
 app.use(cors())
 app.use(express.urlencoded ({ extended: false }))
 app.use(express.json())
-app.use(router)
 
 
 app.get('/', (req, res) => {res.json({ msg: "Deployment successfulgit"})})
