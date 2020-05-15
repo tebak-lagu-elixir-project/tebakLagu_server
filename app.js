@@ -33,7 +33,7 @@ io.on('connection', function(socket) {
       //   if (err) console.log(err);
       //   else {
           console.log('Room created');
-          io.emit('createdRoom', room)
+          socket.emit('createdRoom', room)
           Room.findAll()
             .then(rooms => {
               io.emit('showRooms', rooms)
@@ -54,6 +54,10 @@ io.on('connection', function(socket) {
       .catch(err => console.log(err))          
   })
 
+  socket.on('trigerPlay', () => {
+    console.log('masuuuukk server')
+    socket.broadcast.emit('playGames')
+  })
 
   // add a player when joining
   // payload = { roomId, newPlayer = <string> }

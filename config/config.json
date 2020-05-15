@@ -1,7 +1,7 @@
 {
   "development": {
-    "username": "yohan",
-    "password": "12345678",
+    "username": "postgres",
+    "password": "postgres",
     "database": "tebakLagu_server",
     "host": "127.0.0.1",
     "dialect": "postgres"
