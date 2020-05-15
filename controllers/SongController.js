@@ -18,8 +18,12 @@ class SongController {
         axios.get(`${SongController.API_DEEZER}/track/${req.params.idPlaylist}`)
           .then(({ data }) => {
               let title = data.title.toLowerCase().split(' (')
-              title[1] = title[1].slice(0,title[1].length - 1)
-              if(title[0] == inputAnswer){
+              console.log(title, 'ini title')
+              if(title.length > 1) {
+                  title[1] = title[1].slice(0,title[1].length - 1)
+              }
+              console.log('masuuk===')
+              if(title[0] == inputAnswer.toLowerCase() || title[1] == inputAnswer.toLowerCase() ){
                   //proses jika jawaban benar
                   //update score dll
                 res.status(200).json({

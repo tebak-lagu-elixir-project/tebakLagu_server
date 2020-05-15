@@ -17,6 +17,7 @@ app.use(express.json())
 app.get('/', (req, res) => {res.json({ msg: "Deployment successfulgit"})})
 app.use(router)
 
+let listScore = []
 io.on('connection', function(socket) {
   console.log('User connected')
 
@@ -90,7 +91,20 @@ io.on('connection', function(socket) {
       .then( () => { console.log('Room has been deleted') })
       .catch( err => console.log(err))
   })
+  socket.on('alreadyAnswer', (payload) => {
+    socket.broadcast.emit('stopSong')
+  })
 
+  socket.on('getScore', (payload) => {
+    listScore.push(payload)
+    // socket.emit('getAllScore')
+  })
+  
+  socket.on('displayWinner', () => {
+    const result = listScore.sort((a,b) => b.score - a.score )
+    console.log(result)
+    socket.emit('getWinner', result )
+  })
 
   socket.on('disconnect', function() {
     console.log('User disconnected')
