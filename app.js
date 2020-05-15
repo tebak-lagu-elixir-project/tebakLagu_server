@@ -33,7 +33,7 @@ io.on('connection', function(socket) {
       //   if (err) console.log(err);
       //   else {
           console.log('Room created');
-          io.emit('createdRoom', room)
+          socket.emit('createdRoom', room)
           Room.findAll()
             .then(rooms => {
               io.emit('showRooms', rooms)
