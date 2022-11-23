@@ -16,7 +16,7 @@
     "express": "^4.17.1",
     "pg": "^8.1.0",
     "sequelize": "^5.21.8",
-    "socket.io": "^2.3.0"
+    "socket.io": "^2.5.0"
   },
   "devDependencies": {
     "dotenv": "^8.2.0"
